@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+<script>
+	//实现url中的参数返回一个对象 
+
+	// 如www.baidu.com?id=1&name='haha'  =>{id:1, name:'haha}
+		var url = 'www.baidu.com?id=1&name=haha'
+
+	function getObj(url){
+		var obj = {};
+		var str1 = url.split('?')[1];
+		var arr = str1.split('&');
+		arr.forEach(function(v,i){
+			obj[v.split('=')[0]] = v.split('=')[1];
+		})
+		return obj;
+	}
+
+	console.log(getObj(url))
+
+</script>
+	
+</body>
+</html>

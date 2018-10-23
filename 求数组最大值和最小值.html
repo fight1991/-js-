@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+
+	var arr = [1,2,4,6,99,0,100]
+		function getValue(arr){
+			var sum = 0;
+			arr.forEach(function(v,i){
+				sum += v;
+			})
+			var max =  Math.max.apply(null,arr);
+			var min = Math.min.apply(null,arr);
+
+			return `最大值:${max}---最小值:${min}---和:${sum}`
+
+		}
+
+		console.log(getValue(arr));
+
+
+	</script>
+</body>
+</html>

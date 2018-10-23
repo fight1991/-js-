@@ -1,0 +1,44 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+	<script>
+		
+	//js 监听屏幕方法,可以一次性适配所有设备
+
+
+	//设计图大小
+	var design = 750;
+	//基准值
+	var base = 100;
+
+
+
+	responsive();
+
+	function responsive() {
+
+		var screenWidth = window.innerWidth;
+		if(screenWidth < 320 ){
+			screenWidth = 320
+		}
+		if(screenWidth > 750 ){
+			screenWidth = 750
+		}
+		var size= screenWidth/design * base;
+
+		//设置给html
+		document.documentElement.style.fontSize = size + 'px';
+	}
+
+
+	window.addEventListener('resize',responsive)
+   
+
+	</script>
+</body>
+</html>

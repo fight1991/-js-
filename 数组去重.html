@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+	//数组去重
+	//方法一: 双重for循环 + 节流阀
+		var arr = [1,1,4,4,55,33,33,3,55,0,9,9];
+		var arr1 = [];
+		for(var i = 0; i < arr.length;i ++ ){
+			//假设数组arr中的每一项arr[i]在 arr1中不存在
+			var flag = true;
+			for(var j = 0 ; j < arr1.length;j++){
+				if(arr[i] == arr1[j]){
+					flag = false;
+					break;
+				}
+			}
+
+
+
+			if(flag){
+				arr1.push(arr[i]);
+			}
+		}
+		console.log(arr1);
+	//方法二:利用数组中indexOf方法,不存在返回-1;
+		var arr2 = [];
+		for (var i = 0; i < arr.length; i++) {
+			if ( arr2.indexOf(arr[i]) == -1){
+				arr2.push(arr[i]);
+			}
+		}
+		console.log(arr2)
+
+
+
+	</script>
+</body>
+</html>

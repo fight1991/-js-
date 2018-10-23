@@ -1,0 +1,46 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+	//在字符串中找出出现次数最多的字符, 并计算出现的次数(利用函数返回一个对象)
+	//如：'asdfghasdfghaaaaaaq'  返回{ max:'a',maxCount:8}
+
+     
+
+	var str = 'asdfghasdfghaaaaaaq';
+	function maxCount(str){
+		var obj = {};
+		var obj1 = {};
+		var arr1 = [];
+		var arr2 = [];
+		for (var i = 0; i < str.length; i++) {
+
+			if(str[i] in obj ){
+				obj[str[i]] += 1;
+			}else {
+				obj[str[i]] = 1;
+			}
+
+		}
+		for(var key in obj ){
+			arr1.push(key);
+			arr2.push(obj[key]);
+		}
+		var maxCount = Math.max.apply(null,arr2);
+		var max = arr1[arr2.indexOf(maxCount)];
+		 obj1.max = max;
+		 obj1.maxCount = maxCount;
+		 return obj1;
+	}
+	console.log(maxCount(str));
+
+
+	
+	</script>
+</body>
+</html>

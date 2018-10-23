@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<body>
+	
+	<script>
+		
+		var  arr = [4,21,9,84,36,0]
+
+
+		
+		//1.递归方法
+		var newArr = []
+		function sort(arr){
+			if(arr.length == 0){
+			return;
+			
+		}
+			//找到数组中的最小项
+		var item = Math.min.apply(null,arr)
+		//添加到新数组中
+		newArr.push(item)
+		//把这个最小值从原来的数组中删除
+		var index = arr.indexOf(item)
+		arr.splice(index,1)
+		
+		sort(arr)
+		}
+		sort(arr)
+		console.log(newArr)
+
+
+		
+		//2. sort排序法
+
+		// arr.sort((a,b) => {
+		// 	return a - b
+		// })
+
+		// console.log(arr)
+		// 3.双重for循环法
+
+		// for(var i = 0;i < arr.length -1; i++){//比较的趟数
+		// 	var flag = true
+		// 	for(var j = 0 ; j < arr.length -i -1;j++){//比较的次数
+
+		// 		if(arr[j]>arr[j+1]) {
+		// 			//声明一个变量临时存储,并交换位置
+		// 			var temp
+		// 			temp = arr[j]
+		// 			arr[j] = arr[j+1]
+		// 			arr[j+1] = temp
+		// 			flag = false
+
+		// 		}
+
+
+
+		// 	}
+		// 	if(flag){
+		// 			break;
+		// 		}
+		// }
+		// console.log(arr)
+	</script>
+
+</body>
+</html>

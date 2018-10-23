@@ -1,0 +1,171 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+	<meta name="viewport" content="width=device-width, user-scalable=no, initial-scale=1.0, maximum-scale=1.0, minimum-scale=1.0">
+</head>
+<style>
+	ul {
+		list-style: none;
+	}
+	* {
+		padding: 0;
+		margin: 0;
+		box-sizing:border-box;
+	}
+	html,body {
+		width: 100%;
+		height: 100%;
+	}
+	.container {
+		height: 100%;
+		width: 100%;
+		max-width: 640px;
+		min-width: 320px;
+		background-color: pink;
+		margin: 0 auto;
+	}
+	.container .imgBox {
+		width: 100%;
+		height: 400px;
+		background-color: red;
+		overflow: hidden;
+		
+	}
+	.imgBox ul {
+		width: 500%;
+		height: 400px;
+	}
+
+
+	.imgBox ul li {
+		float: left;
+		height: 400px;
+		width: 20%;
+	
+	}
+	.imgBox ul li:first-child {
+		background-color: hotpink;
+	}
+	.imgBox ul li:nth-child(2) {
+		background-color: yellow;
+	}
+	.imgBox ul li:nth-child(3) {
+		background-color: green;
+	}
+	.imgBox ul li:nth-child(4) {
+		background-color: gray;
+	}
+	.imgBox ul li:nth-child(5) {
+		background-color: skyblue;
+	}
+	.imgBox ul li:nth-child(6) {
+		background-color: hotpink;
+	}
+	.imgBox ul li:nth-child(7) {
+		background-color: yellow;
+	}
+
+
+
+</style>
+<body>
+
+
+<div class="container">
+	<div class="imgBox">
+		<ul>
+			<li>1</li>
+			<li>2</li>
+			<li>3</li>
+			<li>4</li>
+			<li>5</li>
+		</ul>
+	</div>
+</div>
+
+<script>
+	
+//动态设置 ul 的宽度
+
+var lis = document.querySelectorAll('.imgBox ul li');
+var ul = document.querySelector('.imgBox ul');
+var imgBox = document.querySelector('.imgBox');
+//获取每次滑动手指需要移动的距离 
+var distance = imgBox.offsetWidth;
+//记录每次滑动盒子的移动位置
+var index = 1;
+var timerId;
+
+
+//克隆头尾2张图片分别放在 首 尾部
+var lastLi = lis[lis.length-1].cloneNode(true);
+ul.insertBefore(lastLi,lis[0]);
+var firstLi = lis[0].cloneNode(true);
+ul.appendChild(firstLi);
+var lis2 = document.querySelectorAll('.imgBox ul li');
+ul.style.width = 100*(lis2.length) + '%' ;
+lis2.forEach(function(v,i){
+	v.style.width = ul.offsetWidth/(lis2.length) + 'px';
+});
+
+//设置定时器,图片开始轮播
+//设置图片初始位置 
+setTranslateX(1);
+
+timerId = setInterval(function(){
+	index ++ ;
+
+  setTranslateX(index);
+  addTransition();
+
+
+},2000)
+
+
+//监听动画结束事件
+
+ul.addEventListener('transitionend',function(){
+	if(index == lis2.length-1){//说明到达最后一张图片了
+
+		index =1;
+		setTranslateX(index);
+		removeTransition();
+
+	}
+})
+
+
+
+
+
+//监听手指滑动事件
+
+imgBox.addEventListener('touchstart',function(e){
+
+})
+imgBox.addEventListener('touchmove',function(e){
+
+})
+imgBox.addEventListener('touchend',function(e){
+
+})
+
+
+//封装函数,添加过渡和移动距离
+
+function addTransition(){
+	ul.style.transition = 'all .5s'
+}
+function setTranslateX(index){
+	ul.style.transform = `translateX(${-distance*index}px)`;
+}
+function removeTransition(){
+	ul.style.transition = 'none';
+}
+
+</script>
+	
+</body>
+</html>

@@ -1,0 +1,90 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		
+		// 将大数字如：100000000.01 改变成金钱的格式 如￥100，000，000.01元（利用函数封装好）
+
+		function getMoney(num){
+
+			//如果输入的为数字,转换成字符串
+			var newNum = num.toString()
+
+			var newArr = [];
+			var str = '';
+			//如果输入的数字没有小数点,则补上;
+			if(newNum.indexOf('.') == -1) {
+				
+				newNum = newNum + '.00';
+			}
+			//得到小数点左边的整数
+			var left = newNum.split('.')[0];
+			//得到小数点右边的小数
+			var right = newNum.split('.')[1];
+			//将左边的整数,转换成数组--每当数组调用splice方法截取的时候,原数组改变
+			var arr = left.split('');
+			//如果左边的整数长度模余3等于1,则先从左边截取1个字符,存储起来
+			if(left.length % 3 == 1 ){
+				
+				str = arr.splice(0,1).join('') + ',';
+
+			}
+			//如果左边的整数长度模余3等于2,则先从左边截取2个字符,存储起来
+			if(left.length % 3 == 2 ){
+				str = arr.splice(0,2).join('') + ',';
+			}
+			//计算截取后的数组长度,并存储;
+
+			var len = arr.length;
+			//数组arr需要截取len/3 次,且每次截取3位数,正好截取完毕;--[000,000,000,...]
+			for(var i = 0 ; i < len/3;i++){
+				newArr.push(arr.splice(0,3).join(''))
+			}
+			//数据拼接完成;
+			return '￥' + str + newArr.join(',') + ',' + right + '元';
+		}
+
+		var res = getMoney(100000000012305.01)
+
+
+		//优化版
+		function getMoney(num){
+
+			//如果输入的为数字,转换成字符串
+			var newNum = num.toString()
+
+			var newArr = [];
+			var str = '';
+			//如果输入的数字没有小数点,则补上;
+			if(newNum.indexOf('.') == -1) {
+				
+				newNum = newNum + '.00';
+			}
+			//得到小数点左边的整数
+			var left = newNum.split('.')[0];
+			//得到小数点右边的小数
+			var right = newNum.split('.')[1];
+			//将左边的整数,转换成数组--每当数组调用splice方法截取的时候,原数组改变
+			var arr = left.split('');
+
+
+			var count = left.length % 3 ;
+			str = arr.splice(0,count).join('') + ','
+			
+			var len = arr.length;
+			//数组arr需要截取len/3 次,且每次截取3位数,正好截取完毕;--[000,000,000,...]
+			for(var i = 0 ; i < len/3;i++){
+				newArr.push(arr.splice(0,3).join(''))
+			}
+			//数据拼接完成;
+			return '￥' + str + newArr.join(',') + ',' + right + '元';
+		}
+
+
+	</script>
+</body>
+</html>

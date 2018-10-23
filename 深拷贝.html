@@ -1,0 +1,35 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>Document</title>
+</head>
+<body>
+	<script>
+		//实现深拷贝的哈数
+		var obj = {
+			name:19,
+			car :{
+				color:'red',
+				price:'998'
+			}
+		}
+
+		function copy(obj){
+			var obj1 = {};
+			for(var k in obj ){
+				if(typeof obj[k] == 'object'){
+					obj1[k] = copy(obj[k])
+				}else {
+					obj1[k] = obj[k]; 
+				}
+			}
+			return obj1;
+		}
+
+		console.log(copy(obj));
+
+
+	</script>
+</body>
+</html>
